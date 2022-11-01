@@ -12,7 +12,7 @@
 
     // Banner constants
 
-    exports.BANNER_HEADER = 'Wellness is rewarding';
+    exports.BANNER_HEADER = 'Wellness is rewarding.';
     exports.BANNER_SUB_HEADING= '#GiftWellness';
     exports.BANNER_TOP_CONTENT='For every Friend you refer,you get 100 sCash credits for their future purchases.';
     exports.BANNER_BOTTOM_CONTENT='Redeem credits for Amazon Gift Vouchers.';
@@ -33,14 +33,14 @@
     exports.WALLET_MCASH_CREDIT_BALANCE_HEADING_TEXT_MOBILE='sCash Balance';
     exports.WALLET_HISTORY_ICON_TEXT='History';
     exports.WALLET_MCASH_CREDIT_BALANCE_HEADING_TEXT_DESKTOP='sCash Balance';
-    exports.WALLET_LIFETIME_EARNINGS_TEXT='Lifetime earnings';
+    exports.WALLET_LIFETIME_EARNINGS_TEXT='Lifetime earnings:';
     exports.WALLET_REDEEM_NOW_BUTTON_TEXT='Redeem Now';
 
     //Redeem popup
 
     exports.REDEEM_POPUP_HEADER_TEXT='Redeem credits';
     exports.REDEEM_POPUP_SUB_HEADING_TEXT='You can only redeem in multiples of 500';
-    exports.REDEEM_POPUP_BALANCE_TEXT='Balance';
+    exports.REDEEM_POPUP_BALANCE_TEXT='Balance:';
     exports.REDEEM_POPUP_ERROR_TEXT='Enter a value less than the current balance ';
     exports.REDEEM_POPUP_MCASH_CREDITS='sCash credits';
     exports.REDEEM_POPUP='';

@@ -10,7 +10,9 @@ export default function SuccessPopup({close_SuccessPopup,scrollToVouchers}) {
   const height = window.innerHeight;
   const focusOnVouchers = () => {
     close_SuccessPopup();
-    document.getElementById("history").click()
+    if(window.innerWidth <= 600) {
+      document.getElementById("history").click();
+    }
     scrollToVouchers();
     document.getElementById("vouchers").click()
   }

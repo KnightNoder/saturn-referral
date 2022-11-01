@@ -23,7 +23,7 @@
 
 
 :root {
-  --backgroundGradient: linear-gradient(97.06deg, #FCE2EB 37.38%, #BE91A0 127.27%);
+  /* --backgroundGradient: linear-gradient(97.06deg, #FCE2EB 37.38%, #BE91A0 127.27%); */
   --button-color: #8D5468;
   --blue: #1e90ff;
   --color-normal:#F9E9EE;
@@ -34,8 +34,16 @@
   --coin: #FCF0D2;
   --color-light:#8D5468;
   --progress-bar: linear-gradient(180deg, #95CD6C 14.9%, #C3DD7F 100%);
+  --color-gradient: linear-gradient(97.06deg, #FCE2EB 37.38%, #BE91A0 127.27%);
 }
 
+.saturn-gradient{
+  background:  linear-gradient(97.06deg, #FCE2EB 37.38%, #BE91A0 127.27%);
+}
+
+.mars-gradient{
+  background: linear-gradient(99.82deg, #222F54 -40.4%, #1665AC 145.21%);;
+}
 
 div:empty{
   display: block;
@@ -112,6 +120,7 @@ a:not([href]) {
   .walletCardsContainer {
     flex-direction: column-reverse;
     display: flex;
+    margin: 4% 5% 4% 5%;
   }
   
   .progress-bar-saturn-step {

@@ -8,7 +8,8 @@ import saturnMinus from "../images/saturn-minus.png";
 import saturnPlus from "../images/saturn-plus.png";
 import share from "../images/small-share.png";
 import share_saturn from '../images/share-saturn.png';
-import redeem_saturn from '../images/redeem-saturn.png'
+import redeem_saturn from '../images/redeem-saturn.png';
+import redeem_mars from '../images/redeem_mars.png';
 import { Modal } from "react-responsive-modal";
 import next from "../images/next.png";
 import { useEffect, useState } from "react";
@@ -17,19 +18,22 @@ import React, { Component } from "react";
 import axios from "axios";
 
 export default function RedeemPopup({ user_data, customer_id,closeDesktopModal,open_SuccessPopup,
-  closeMobileModal,close_SuccessPopup,getNewData,cashName }) {
+  closeMobileModal,close_SuccessPopup,setData,cashName,setLoadingFalse,setLoadingTrue,customerPhoneNumber }) {
   const [redeemAmount, setRedeemAmount] = useState(500);
   const [progress_amount, Set_progress_amount] = useState(0);
   const [loading_state,Set_loading_state] = useState(false);
   const [friend_to_refer_for_redemption,Set_friend_to_refer_for_redemption] = useState(0);
+  const [loading,Set_loading]= useState(false);
+
   const mcash_for_redeem_pending = (user_data.balance%500);
   const can_redeem = (user_data/500);
   const number_of_more_friends_to_refer = (500-(mcash_for_redeem_pending))/100;
   const next_redemption_amount = user_data.balance+mcash_for_redeem_pending;
   const decrement = () => {
-    if (redeemAmount == 0) {
-      document.getElementById("error-text-redeem").style.visibility = "hidden"
-    } else if ( redeemAmount - 500 >= 0) {
+    if (redeemAmount - 500 == 0) {
+      document.getElementById("error-text-redeem").style.visibility='visible';
+      document.getElementById("error-text-redeem").innerHTML = 'Enter a minimum value of 500';
+    } else if ( redeemAmount - 500 > 0) {
      setRedeemAmount(redeemAmount - 500);
      document.getElementById("error-text-redeem").style.visibility = "hidden"
     } else {
@@ -41,7 +45,8 @@ export default function RedeemPopup({ user_data, customer_id,closeDesktopModal,o
       setRedeemAmount(redeemAmount + 500);
       document.getElementById("error-text-redeem").style.visibility = "hidden"
     } else {
-      document.getElementById("error-text-redeem").style.visibility = "visible"
+      document.getElementById("error-text-redeem").style.visibility = "visible";
+      document.getElementById("error-text-redeem").innerHTML = 'Enter a value less than the current balance';
     }
   };
 
@@ -55,13 +60,18 @@ export default function RedeemPopup({ user_data, customer_id,closeDesktopModal,o
    }
 
   const redeemCoins = async () => {
+    setLoadingTrue();
     const data = {
       customer_id: customer_id,
       redeem: redeemAmount,
+      brand: process.env.REACT_APP_BRAND,
+      phone: customerPhoneNumber,
+      email: document.getElementById('shopify-customer-email').value
     };
+    console.log(data,'red data');
     const config = {
       method: "post",
-      url: `${process.env.REACT_APP_REFERRAL_BASE_URL}/referral/redeem`,
+      url: `${process.env.REACT_APP_REFERRAL_BASE_URL}/referral/redeemMcash`,
       headers: {
         "Content-Type": "application/json",
       },
@@ -70,12 +80,15 @@ export default function RedeemPopup({ user_data, customer_id,closeDesktopModal,o
 
     await axios(config)
     .then((response) => {
+        console.log(response.data,'resp data');
         closeDesktopModal();
         closeMobileModal();
+        setData(response);
+        setLoadingFalse();
         open_SuccessPopup();
-        // getNewData();
     })
     .catch((error) => {
+      Set_loading(false);
       console.log(error);
     });
 
@@ -83,8 +96,8 @@ export default function RedeemPopup({ user_data, customer_id,closeDesktopModal,o
     //   closeDesktopModal();
     //   closeMobileModal();
     //   open_SuccessPopup();
-    //   // getNewData();
-
+    //   setLoadingFalse();
+    //   // setData();
     // },3000)
   };
   useEffect(() => {
@@ -93,7 +106,7 @@ export default function RedeemPopup({ user_data, customer_id,closeDesktopModal,o
   }, []);
   return (
     <>
-      <Container>
+       <Container>
         <div className="modalContainer">
           <div className="headerContent">
             <div className="modalHeader">{constants.REDEEM_POPUP_HEADER_TEXT}</div>
@@ -109,13 +122,13 @@ export default function RedeemPopup({ user_data, customer_id,closeDesktopModal,o
           </div>
           <div className="addCoins">
             <div className="minus" onClick={() => decrement()}>
-              <img src={saturnMinus} alt="" />
+              <img src={ process.env.REACT_APP_BRAND == 'Saturn' ? saturnMinus : minus} className="minus-image" alt="" />
             </div>
             <div className="addCoinsText">
               <img src={pic} alt="" /> {redeemAmount}
             </div>
             <div className="plus" onClick={() => increment()}>
-              <img src={saturnPlus} alt="" />
+              <img src={process.env.REACT_APP_BRAND == 'Saturn' ? saturnPlus : plus} className="plus-image" alt="" />
             </div>
           </div>
           <div id="error-text-redeem">
@@ -151,13 +164,13 @@ export default function RedeemPopup({ user_data, customer_id,closeDesktopModal,o
           <div className="earnAndSave">
             <div className="saveHeader">Gift More. Save More.</div>
             <div className="saveContent">
-              <img src={share_saturn} alt="" style={{}} />
+              <img src={process.env.REACT_APP_BRAND == 'Saturn' ?  share_saturn : share} alt="" style={{}} />
               <span className="save-content-text">
                 100 {cashName} credits for every referral order
               </span> 
             </div>
             <div className="saveContent bottom">
-              <img src={redeem_saturn} alt="" style={{}} /> 
+              <img src={process.env.REACT_APP_BRAND == 'Saturn' ? redeem_saturn : redeem_mars} alt="" style={{}} /> 
               <span className="save-content-text">
                 Redeem credits for Amazon gift vouchers
               </span>
@@ -167,7 +180,7 @@ export default function RedeemPopup({ user_data, customer_id,closeDesktopModal,o
             <div className="referMore">
               Refer {number_of_more_friends_to_refer} more friend{`${number_of_more_friends_to_refer>1 ? 's':""}`} to reach{"  "}
             <span className="greenText">
-              {user_data.balance+number_of_more_friends_to_refer*100} {constants.REDEEM_POPUP_MCASH_CREDITS}
+              {user_data.balance+number_of_more_friends_to_refer*100} {cashName} credits
             </span>
             </div> 
           </div>
@@ -186,8 +199,8 @@ export default function RedeemPopup({ user_data, customer_id,closeDesktopModal,o
         >
           {constants.WALLET_REDEEM_NOW_BUTTON_TEXT}
         </button>
-        </div>
-      </Container>
+        </div> 
+      </Container> 
     </>
   );
 }

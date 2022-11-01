@@ -14,13 +14,15 @@ import NoMcashPopUp from "./NoMcashPopUp";
 import SuccessPopup from '../Components/SuccessPopup';
 import axios from "axios";
 import constants from "../lib/constants";
+import Loader from "./Loader";
 const mobileViewContext = createContext();
 
-export default function CoinBalanceCard({ showHistory, user_data, customer_id,scrollToVouchers,getNewData,cashName }) {
+export default function CoinBalanceCard({ showHistory, user_data, customer_id,scrollToVouchers,setData,cashName,customerPhoneNumber }) {
   const [open, setOpen] = useState(false); 
   const [modalIsOpen, setIsOpen] = useState(false);
   const [successPopup,Set_successPopup] = useState(false);
   const [noCashModalIsOpen,Set_noCashModalIsOpen] = useState(false);
+  const [loading,Set_loading] = useState(false);
   const openDesktopModal = () => {
     setIsOpen(true);
   };
@@ -53,8 +55,17 @@ export default function CoinBalanceCard({ showHistory, user_data, customer_id,sc
     Set_successPopup(false);
   } 
 
+  const setLoadingFalse = () => {
+    Set_loading(false);
+  }
+
+  const setLoadingTrue = () => {
+    Set_loading(true);
+  }
+
   return (
     <>
+      { !loading ?  <div>
       <div className="coinBalanceHeading">
         {cashName} Balance:
         <div className="history" id="history" onClick={() => showHistory()}>
@@ -89,7 +100,7 @@ export default function CoinBalanceCard({ showHistory, user_data, customer_id,sc
       </div>
       <div className="lifetime-earnings">
         <span className="earnings">{constants.WALLET_LIFETIME_EARNINGS_TEXT}</span>
-        <span className="amount">&#8377;{user_data.lifetime}</span>
+        <span className="amount">{user_data.lifetime}</span>
       </div>
       <div className="button-container">
         <button
@@ -102,7 +113,8 @@ export default function CoinBalanceCard({ showHistory, user_data, customer_id,sc
         </button>
         <BottomSheet open={open} onDismiss={closeMobileModal}>
           <RedeemPopup user_data={user_data} customer_id={customer_id} open_SuccessPopup={open_SuccessPopup} closeDesktopModal={closeDesktopModal} 
-          closeMobileModal={closeMobileModal} close_SuccessPopup={close_SuccessPopup} getNewData={getNewData} cashName={cashName}/>
+          closeMobileModal={closeMobileModal} close_SuccessPopup={close_SuccessPopup} setData={setData} cashName={cashName} setLoadingFalse={setLoadingFalse}
+          setLoadingTrue={setLoadingTrue} customerPhoneNumber={customerPhoneNumber}/>
         </BottomSheet>
         <Modal
           center
@@ -113,7 +125,8 @@ export default function CoinBalanceCard({ showHistory, user_data, customer_id,sc
           }}
         >
           <RedeemPopup user_data={user_data} customer_id={customer_id} open_SuccessPopup={open_SuccessPopup} closeDesktopModal={closeDesktopModal}
-          closeMobileModal={closeMobileModal} close_SuccessPopup={close_SuccessPopup} getNewData={getNewData} cashName={cashName}/>
+          closeMobileModal={closeMobileModal} close_SuccessPopup={close_SuccessPopup} setData={setData} cashName={cashName} setLoadingFalse={setLoadingFalse}
+          setLoadingTrue={setLoadingTrue} customerPhoneNumber={customerPhoneNumber}/>
         </Modal>
         <Modal
           center
@@ -127,6 +140,7 @@ export default function CoinBalanceCard({ showHistory, user_data, customer_id,sc
           <NoMcashPopUp closeNoMcashPopUp={closeNoMcashPopUp} code={user_data.referral_code} cashName={cashName}/>
         </Modal>
       </div>
+      </div> : <Loader/> }
       <Modal
           center
           open={successPopup}

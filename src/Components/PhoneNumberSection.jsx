@@ -11,33 +11,25 @@ import Loader from "./Loader";
 import "react-responsive-modal/styles.css";
 import '../css/PhoneNumberSection.css';
 
-const PhoneNumberSection = ({customer_id}) => {
+const PhoneNumberSection = ({customer_id,customerPhoneNumber,SetPhoneNumber}) => {
   const [phoneNumber,Set_phoneNumber] = useState('');
   const [modalOpen,Set_modalOpen] = useState(false);
-  const [customerPhoneNumber,Set_customerPhoneNumber] = useState('');
   const [loading,Set_loading] = useState(true);
   const [successModal,Set_successModal] = useState(false);
   const [mobileModal,Set_mobileModal] = useState(false);
  
   const getPhoneNumber = async () => {
-    let config = {
-      method: 'get',
-      url: `${process.env.REACT_APP_STORE_URL}/admin/api/2022-01/customers/${customer_id}.json`,
-      headers: { 
-        'X-Shopify-Access-Token': process.env.REACT_APP_STORE_ACCESS_TOKEN
-      }
-    };
-
     try {
-      const response  = await axios(config);
-      console.log(response.data,'resp data');
-      const changed_phone_number = response.data.customer.phone?.slice(3);
-      console.log(changed_phone_number,'phone number');
-      Set_customerPhoneNumber(changed_phone_number);
+      if(document.getElementById('shopify-customer').value){
+        SetPhoneNumber(document.getElementById('shopify-customer').value);
+      } else {
+        const required_phone_number = document.getElementById('shopify-customer-phone')?.value?.slice(3);
+        SetPhoneNumber(required_phone_number)
+      }
       Set_loading(false);
-      return response;
     } catch(error) {
       console.log(error);
+      Set_loading(false);
       return null;
     }
   }
@@ -54,22 +46,19 @@ const PhoneNumberSection = ({customer_id}) => {
     Set_mobileModal(false);
   }
 
-  const changePhoneNumber = async (evetm,from_popup) => {
+  const changePhoneNumber = async (event,from_popup) => {
     Set_mobileModal(false);
     Set_modalOpen(false);
     Set_loading(true);
     let data = JSON.stringify({
-      "customer": {
-        "id": customer_id,
-        "phone": phoneNumber
-      }
+        "customer": customer_id,
+        "phoneNumber": phoneNumber
     });
 
     let config = {
-      method: 'put',
-      url: `${process.env.REACT_APP_STORE_URL}/admin/api/2022-01/customers/${customer_id}.json`,
+      method: 'post',
+      url: `${process.env.REACT_APP_SHOPIFY_DATA_URL}/shopify-user/updateData`,
       headers: { 
-        'X-Shopify-Access-Token': process.env.REACT_APP_STORE_ACCESS_TOKEN, 
         'Content-Type': 'application/json', 
       },
       data : data
@@ -77,18 +66,21 @@ const PhoneNumberSection = ({customer_id}) => {
 
     try {
       const response = await axios(config);
-      const changed_phone_number = response.data.customer.phone?.slice(3) 
-      Set_customerPhoneNumber(changed_phone_number);
+      SetPhoneNumber(response.data);
       Set_loading(false);
       if(!from_popup){
         Set_successModal(true);
+        setTimeout(() => {
+          Set_successModal(false);
+        }, 1000);
       }
     } catch(error) {
+      Set_loading(false);
       console.log(error);
     }
   }
   
-  const SetPhoneNumber = (e) =>{
+  const SetPhoneNumberTemp = (e) =>{
     Set_phoneNumber(e.target.value)
   }
   
@@ -96,6 +88,22 @@ const PhoneNumberSection = ({customer_id}) => {
     window.innerWidth > 900 ? Set_modalOpen(true) : Set_mobileModal(true);
   }
   
+  const phone_number_check = () => {
+    if (phoneNumber) {
+      if (
+        phoneNumber.length == 10 &&
+        (phoneNumber.startsWith("6") ||
+          phoneNumber.startsWith("7") ||
+          phoneNumber.startsWith("8") ||
+          phoneNumber.startsWith("9"))
+      )
+        return true;
+        else {
+          return false;
+        }
+    }
+  };
+
   const isValidInput = (e) => {
     if (e.keyCode === 13) {
       document.getElementById("phone-number-submit").click();
@@ -129,7 +137,7 @@ const PhoneNumberSection = ({customer_id}) => {
       </div>
       <div className='sub-heading'>
         To continue using your account and for all future updates, please link your phone number.All notifications will be sent via
-        <span className='whatsapp-image-span'> <img src={whatsappPic} className="whatsapp-img" alt="" srcset="" /></span> Whatsapp/SMS
+        <span className='whatsapp-image-span'> <img src={whatsappPic} className="whatsapp-img" alt="" srcset="" /></span> Whatsapp/SMS.
       </div>
       <div className='input-section'>
         <div className='input-phone-number'>
@@ -141,7 +149,7 @@ const PhoneNumberSection = ({customer_id}) => {
            maxLength="10" onKeyDown={isValidInput}
            autoComplete='off'/>
         </div>
-          <button id="phone-number-submit" onClick={changePhoneNumber} disabled={phoneNumber?.length != 10} className={`${(phoneNumber?.length == 10)? 'phone-number-submit-correct': 'phone-number-submit' }`}>
+          <button id="phone-number-submit" onClick={changePhoneNumber} disabled={phoneNumber?.length != 10} className={`${(phone_number_check())? 'phone-number-submit-correct': 'phone-number-submit' }`}>
             Submit
           </button>
       </div>
@@ -149,7 +157,7 @@ const PhoneNumberSection = ({customer_id}) => {
     <div className='phone-number-section'>
       <div className='sub-heading'>
         All the updates will be sent on your registered phone number via 
-        <span className='whatsapp-image-span'> <img src={whatsappPic} className="whatsapp-img" alt="" srcset="" /></span> Whatsapp/SMS
+        <span className='whatsapp-image-span'> <img src={whatsappPic} className="whatsapp-img" alt="" srcset="" /></span> Whatsapp/SMS.
       </div>
       <div className='phone-number-details-div'>
         <span className='phone-number-text'>Phone Number:</span><span className='phone-number' >{customerPhoneNumber}</span><a className='change-phone-link' onClick={changeNumber} >Change</a>
@@ -169,7 +177,8 @@ const PhoneNumberSection = ({customer_id}) => {
           }}
         >
         <PhoneNumberPopup 
-        phoneNumber={phoneNumber} SetPhoneNumber={SetPhoneNumber} isValidInput={isValidInput} changePhoneNumber={changePhoneNumber}
+        phoneNumber={phoneNumber} SetPhoneNumberTemp={SetPhoneNumberTemp} isValidInput={isValidInput} changePhoneNumber={changePhoneNumber}
+        phone_number_check={phone_number_check}
         // closeDesktopModal={closeDesktopModal} close_SuccessPopup={close_SuccessPopup} 
         />
       </Modal>
@@ -186,7 +195,7 @@ const PhoneNumberSection = ({customer_id}) => {
       </Modal>
       <BottomSheet open={mobileModal} onDismiss={closeMobileModal}>
         <PhoneNumberPopup 
-          phoneNumber={phoneNumber} SetPhoneNumber={SetPhoneNumber} isValidInput={isValidInput} changePhoneNumber={changePhoneNumber}
+          phoneNumber={phoneNumber} SetPhoneNumberTemp={SetPhoneNumberTemp} isValidInput={isValidInput} changePhoneNumber={changePhoneNumber}
           // closeDesktopModal={closeDesktopModal} close_SuccessPopup={close_SuccessPopup} 
           />
       </BottomSheet>

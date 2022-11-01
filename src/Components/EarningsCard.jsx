@@ -6,7 +6,7 @@ import calenderPic from '../images/calender.png';
 import coinPic from '../images/500coin.jpg';
 import { useEffect } from 'react';
 
-export default function EarningsCard({item}) {
+export default function EarningsCard({item,cashName}) {
     const date = new Date(item.createdAt);
     const required_date = `${date.getDate()} ${date.toLocaleString('en-US', {month: 'short'})} ${date.getFullYear()} `
    
@@ -17,7 +17,7 @@ export default function EarningsCard({item}) {
                 <div className='historyContentCard'>
                     <div className='historyContent'>
                         <div className='earn-record'>
-                            Earned <span className='coins'>{item.value} Cash credits</span>  on referral order
+                            Earned <span className='coins'>{item.value} {cashName} credits</span>  on referral order
                         </div>
                         <div className='earn-image'>
                             {/* <img src={coinPic} className='coin-pic' alt="" /> */}

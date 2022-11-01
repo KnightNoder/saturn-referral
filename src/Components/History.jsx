@@ -12,10 +12,10 @@ import { Modal } from "react-responsive-modal";
 import "../css/History.css";
 import "../css/referAFriend.css";
 
-const History = ({user_data, customer_id,focus_ref,Set_Referral_code,cashName}) => {
+const History = ({user_data, customer_id,focus_ref,referral_code,cashName}) => {
     const [buttonsState,setButtonState] = useState({
         earningsButtonColor: "white",
-        earningsButtonTextColor:"#8D5468",
+        earningsButtonTextColor: process.env.REACT_APP_COLOR_DARK,
         earnings: true,
         spendsButtonColor:"#ebebeb",
         spendsButtonTextColor:"black",
@@ -29,7 +29,7 @@ const History = ({user_data, customer_id,focus_ref,Set_Referral_code,cashName}) 
     const showEarnings = () =>{
         setButtonState({
             earningsButtonColor: "white",
-            earningsButtonTextColor:"#8D5468",
+            earningsButtonTextColor:process.env.REACT_APP_COLOR_DARK,
             earnings: true,
             spendsButtonColor:"#ebebeb",
             spendsButtonTextColor:"black",
@@ -49,9 +49,12 @@ const History = ({user_data, customer_id,focus_ref,Set_Referral_code,cashName}) 
           spendsButtonTextColor:"black",
           spends: false,
           vouchersButtonColor: "white",
-          vouchersButtonTextColor:"#8D5468",
+          vouchersButtonTextColor:process.env.REACT_APP_COLOR_DARK,
           vouchers: true
       })
+  }
+  const redirectToShopifyHome = () => {
+    window.location.href = process.env.REACT_APP_LOGIN_REDIRECT_URL;
   }
   return (
     <>
@@ -63,14 +66,14 @@ const History = ({user_data, customer_id,focus_ref,Set_Referral_code,cashName}) 
                 <img src={live} className='live-img' alt="" srcset="" />
            </div>
            <div className="live-div-content">
-               <span className="green-text"> {user_data.coins_on_way} sCash Credits</span> are on your way!
+               <span className="green-text"> {user_data.coins_on_way} {cashName} Credits</span> are on your way!
            </div>
         </div>
         <div className="history-referral-content">
             <div style={{flex:1, visibility:"visible"}}>
             </div>
             <div style={{flex:10}}>
-            {user_data.coins_on_way} {constants.HISTORY_MCASH_CREDIT_ON_THE_WAY} 
+            {user_data.coins_on_way} {cashName} Credits will be added once your referral receives their order
             </div>
         </div>
       </div> : null }
@@ -86,9 +89,10 @@ const History = ({user_data, customer_id,focus_ref,Set_Referral_code,cashName}) 
                     {constants.HISTORY_VOUCHERS_BUTTON_TEXT}
                 </button>
             </div>
-            { user_data?.rewards_list?.length  ? <div>
+            { (user_data?.rewards_list?.length && buttonsState.earnings )  ? 
+            <div className="history-earnings-div">
             {buttonsState.earnings && user_data.rewards_list.map((item,key)=> (
-                <EarningsCard key={key} item={item} />
+                <EarningsCard key={key} item={item} cashName={cashName} />
                 ))} 
             </div> : 
             buttonsState.earnings && 
@@ -100,12 +104,13 @@ const History = ({user_data, customer_id,focus_ref,Set_Referral_code,cashName}) 
                 </div>
                 </div>  
                 <div className="no-earnings-header">
-                    {constants.HISTORY_REFER_FRIEND_TEXT}
+                    To earn more {cashName},refer your friends by sharing your code
                 </div>
-                <ReferAFriend customer_id={customer_id} Set_Referral_code={Set_Referral_code} inHistory={true}/>
+                <ReferAFriend customer_id={customer_id} inHistory={true} referral_code={referral_code}/>
             </div>
             }
-            { (user_data?.pending_amazon_vouchers?.length || user_data?.vouchers_array?.length) ? <div>
+            { ((user_data?.pending_amazon_vouchers?.length || user_data?.vouchers_array?.length) && buttonsState.vouchers)? 
+            <div className="history-earnings-div">
                 {buttonsState.vouchers && user_data.pending_amazon_vouchers.map((item,key)=> (
                     <VouchersCard key={key} item={item} pending="true"/>  
                 ))}
@@ -122,9 +127,9 @@ const History = ({user_data, customer_id,focus_ref,Set_Referral_code,cashName}) 
                 </div>
                 </div>  
                 <div className="no-earnings-header">
-                    {constants.HISTORY_REFER_FRIEND_TEXT}
+                    To earn more {cashName},refer your friends by sharing your code
                 </div>
-                <ReferAFriend customer_id={customer_id} Set_Referral_code={Set_Referral_code} inHistory={true}/>
+                <ReferAFriend customer_id={customer_id} inHistory={true} referral_code={referral_code}/>
               </div>
               }
       </div>

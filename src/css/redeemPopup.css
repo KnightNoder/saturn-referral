@@ -1,7 +1,7 @@
 .modalHeader {
   font-style: normal;
   font-weight: 700;
-  font-size: 24px;
+  font-size: 22px;
   line-height: 28px;
   color: #333333;
   margin-top: 10px;
@@ -27,8 +27,20 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  border: solid 1px #975169;
-  color: #975169;
+  border: solid 1px var(--color-dark);
+  color: var(--color-dark);
+  font-size: 14px;
+}
+
+.plus-image{
+  height: 18px;
+  width: 22px;
+  margin-top: 7%;
+}
+
+.minus-image{
+  width: 22px;
+  height: 1.5px;
 }
 
 .fiveHundredText,
@@ -38,11 +50,11 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 17px;
-  color: #000000;
+  color: #333333;
 }
 
 .earnAndSave {
-  background: var(--color-normal);
+  background: var(--color-hover);
   border-radius: 16px;
   margin-top: 22px;
 }
@@ -50,9 +62,9 @@
 .saveHeader {
   font-style: normal;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 19px;
-  color: #223263;
+  color: var(--color-dark);
   padding-top: 13px;
   margin-left: 5%;
   text-align: left;
@@ -62,7 +74,7 @@
 .saveContent {
   font-style: normal;
   font-weight: 400;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 14px;
   color: #726868;
   margin-top: 14px;
@@ -81,22 +93,21 @@
 .referMore {
   font-style: normal;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 14px;
   color: #223263;
   margin-top: 12px;
   margin: 3% 4%;
 }
 
 .redeemButtonPopUp {
-  background: var(--button-color);
-  border: 1px solid var(--button-color);
+  background: var(--color-dark);
+  border: 1px solid var(--color-dark);
   box-sizing: border-box;
-  box-shadow: 0px 4px 10px #a6cad1;
   border-radius: 5px;
   width: 100%;
   font-style: normal;
   font-weight: 500;
-  font-size: 24px;
+  font-size: 14px;
   height: 44px;
   text-align: center;
   color: #ffffff;
@@ -127,14 +138,14 @@
 .redeemCoinBalanceAmount {
   font-style: normal;
   font-weight: 700;
-  font-size: 19px;
-  color: var(--light-green)
+  font-size: 14px;
+  color: #5f9e71
 }
 
 .redeemCoinBalanceText {
   font-style: normal;
   font-weight: 400;
-  font-size: 18px;
+  font-size: 14px;
   line-height: 14px;
   color: #333333;
 }
@@ -150,9 +161,9 @@
 .addCoinsText {
   font-style: normal;
   font-weight: 500;
-  font-size: 24px;
+  font-size: 22px;
   letter-spacing: 0.0025em;
-  color: #000000;
+  color: #333333;
   flex: 8
 }
 
@@ -166,14 +177,14 @@
 }
 
 .css-h8g9t7-MuiLinearProgress-bar1 {
-  background: var(--progress-bar) !important;
+  background: var(--color-progress) !important;
   /* background-color: pink !important; */
 }
 
 .css-1hxt08m-MuiLinearProgress-root {
   background: #D1D1D170 !important;
   border-radius: 30px;
-  height: 15px !important;
+  height: 4px !important;
 }
 
 .sub-heading-redeem {
@@ -201,7 +212,7 @@
 @media only screen and (max-width: 600px) {
   .custom-modal-success {
     width: 67%;
-    height: 48%;
+    height: 42%;
     border-radius: 10px;
     overflow: visible;
     position: relative;
@@ -246,14 +257,14 @@
   }
 
   .react-responsive-modal-modal {
-    height: 73%;
-    width: 64%;
+    height: 19%;
+    width: 42%;
     border-radius: 16px;
   }
 
   .custom-modal-success {
     width: 48%;
-    height: 27%;
+    height: 22%;
     position: relative;
     overflow: visible;
   }
@@ -276,12 +287,12 @@
 
   .redeem-message {
     color: #A6A6A6;
-    font-size: 17px;
+    font-size: 14px;
   }
 
   .custom-modal-success {
-    width: 30%;
-    height: 35%;
+    width: 25%;
+    height: 33%;
     position: relative;
     overflow: visible;
   }

@@ -13,7 +13,7 @@
     background: #FFFFFF;
     border-radius: 4px;
     margin-top: 1.5%;
-    width: 45%;
+    width: 37%;
 }
 
 .input-phone-number {
@@ -23,11 +23,12 @@
 .phone-number-submit-correct {
     flex: 4;
     padding: 1.5% 0;
-    background-color: var(--button-color);
+    background-color: var(--color-dark);
     color: #ffffff;
     border-radius: 4px;
-    font-size: 25px;
+    font-size: 14px;
     cursor: pointer;
+    height: 44px;
 }
 
 .phone-number-submit {
@@ -36,28 +37,29 @@
     border-radius: 4px;
     background-color: #EDEFED;
     color: #777777;
-    font-size: 25px;
+    font-size: 14px;
+    height: 44px;
     cursor: not-allowed;
 }
 
 .phone-number-section .sub-heading {
     margin-top: 1%;
-    font-size: 20px;
-    color: #333333;
+    font-size: 22px;
+    color: #777777;
 }
 
 .input-phone-text {
     height: 100%;
     width: 100%;
     padding-left: 3%;
-    font-size: 25px;
+    font-size: 14px;
     border: none !important;
     outline: none !important;
 }
 
 .input-phone-text::placeholder {
     color: #777777;
-    font-size: 20px;
+    font-size: 14px;
 }
 
 .input-phone-text:focus{
@@ -66,13 +68,13 @@
 }
 
 .change-phone-link{
-    color: var(--button-color);
+    color: var(--color-dark);
     text-decoration-line: underline;
     margin-left: 2%;
 }
 
 .section-header {
-    font-size: 20px;
+    font-size: 22px;
     color: #333333;
 }
 
@@ -101,13 +103,13 @@
 }
 
 .phone-number-details-div{
-    font-size: 20px;
+    margin-top: 1%;
 }
 
 
 .phone-number-popup-heading {
     color: #333333;
-    font-size: 25px;
+    font-size: 22px;
 }
 
 .phone-number-popup{
@@ -119,24 +121,28 @@
 }
 
 .input-phone-popup {
-    margin: 4% 0%;
+    margin: 6% 0%;
+    border-bottom: solid 1px #333333;
 }
 
 .phone-number{
     margin-left: 1%;
 }
 
+.phone-number-text,.change-phone-link,.phone-number{
+    font-size: 22px;
+}
 @media only screen and (max-width: 600px){
     .phone-number-section .sub-heading{
         margin-right: 3%;
-        font-size: 12px;
+        font-size: 14px;
     }
 
-    .phone-number-text{
+    .phone-number-text,.change-phone-link,.phone-number{
+        font-size: 14px;
     }
 
     .change-phone-link{
-        margin-left: 33%;
     }
 
     .phone-number-details-div{
@@ -168,11 +174,11 @@
     }
 
     .input-phone-text::placeholder{
-        font-size: 12px;
+        font-size: 10px;
     }
 
     .phone-number-section .input-section {
-        padding: 2.5% 1%;
+        padding-left: 3%;
     }
 
     .phone-number-submit, .phone-number-submit-correct{
@@ -187,45 +193,65 @@
 
     .phone-number-submit{
         cursor: not-allowed;
+        height: 34px;
+        margin-right: 2%;
+        font-size: 14px;
     }
 
     .phone-number-submit-correct{
         cursor: pointer;
+        height: 34px;
+        font-size: 14px;
+    }
+
+    .section-header{
+        font-size: 14px;
+    }
+
+    .phone-number-submit-correct{
+        margin-right: 2%;
     }
 }
 
 @media only screen and (max-width: 900px){
     .phone-number-popup-div{
-        height: 170px
     }
 
     .phone-number-popup-heading{
         font-size: 17px;
-        margin-left: 8%;
+        margin-left: 6%;
     }
 
     .phone-number-submit-div{
-        width: 80%;
+        width: 88%;
         margin: 0 auto;
     }
 
     .input-phone-popup{
-        margin: 3% auto 6% auto;
+        margin: 6% auto 6% auto;
         width: 87%;
+        border-bottom: solid 1px #333333;
     }
 
     .input-phone-text{
         background-color: #ffffff;
-        font-size: 16px !important;
+        font-size: 14px !important;
+        padding-left: 0%
     }
 
+    .input-phone-text::placeholder{
+        font-size: 14px;
+    }
+
+    .phone-number-submit{
+        font-size: 14px;
+    }
 }
 
 
 @media only screen and (min-width:900px) {
     .custom-modal-phone-number {
-        width: 33%;
-        height: 33%;
+        width: 26%;
         padding: 2% 3%;
     }
 }

@@ -11,10 +11,8 @@ import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import axios from "axios";
 
-export default function ReferAFriend({ customer_id,Set_Referral_code,inHistory,cashName}) {
-  const [isMobile, SetIsMobile] = useState(false);
+export default function ReferAFriend({ customer_id,inHistory,cashName,referral_code}) {
   const [clicked, Set_clicked] = useState(false);
-  const [referral_code, Set_referral_code] = useState("");
   const [open, setOpen] = useState(false);
   const [modalIsOpen, setIsOpen] = useState(false);
   const openDesktopModal = () => {
@@ -33,68 +31,52 @@ export default function ReferAFriend({ customer_id,Set_Referral_code,inHistory,c
     setOpen(false);
   };
 
-  const getShareText = (code) => {
-    return 
-  }
-
-  const share = () => {
-    if(customer_id) {
-      if (navigator.share) {
-        navigator
-        .share({
-          title: "Referral",
-          text: `Hey,buddy!\nHere is my Mars by ghc referral code - ${referral_code}.\nYou get 20% off and free delivery on your next order.\nLet's celebrate Good health and Wellness`,
-          // url: "/",
-          // files:filesArray
-        })
-        .then(() => {
-          console.log("Successfully shared");
-        })
-        .catch((error) => {
-          console.error(error);
-        });
+  const share = async () => {
+    if(customer_id){
+    if (navigator.share) {
+      let image='';
+      let link = ''
+      if(process.env.REACT_APP_BRAND == 'Saturn') {
+        image = await fetch("https://cdn.shopify.com/s/files/1/0607/6029/3588/files/Referral_message.png?v=1664823151");
+      } else {
+        image = await fetch("https://cdn.shopify.com/s/files/1/0607/6029/3588/files/Referral_message-1.png?v=1665489842");
       }
+
+      if(process.env.REACT_APP_BRAND == 'Saturn') {
+        link = `https://www.saturn.health/pages/referral`
+      } else {
+        link = `https://www.ghc.health/pages/referral`
+      }
+      const image_blob = await image.blob();
+      const file = new File([image_blob],'Whatsapp_referral_image.jpg',{type:"image/jpeg"})
+      navigator
+      .share({
+        files:[file],
+        title: "Referral",
+        text: `Hey,buddy!\nHere is my ${process.env.REACT_APP_BRAND} by ghc referral code - ${referral_code.toUpperCase()}.\nYou get 20% off and free delivery on your next order.\nLet's celebrate Good health and Wellness
+        \n${link} `
+      })
+      .then(() => {
+        console.log("Successfully shared");
+      })
+      .catch((error) => {
+        console.error("Something went wrong", error);
+      });
+    }
     } else {
-        openDesktopModal()
+        openDesktopModal();
     }
 }
-
-  useEffect(() => {
-    SetIsMobile(window.innerWidth > 480 ? true : false);
-    const data = {
-      customer_id: customer_id,
-    };
-    const getReferralCode = async () => {
-      const config = {
-        method: "post",
-        url: `${process.env.REACT_APP_REFERRAL_BASE_URL}/referral/createReferral`,
-        headers: {
-          "Content-Type": "application/json",
-        },
-        customer_id: customer_id,
-        data: data
-      };
-      await axios(config)
-        .then((response) => {
-          Set_referral_code(response.data.body.referral_code);
-          Set_Referral_code(response.data.body.referral_code);
-        })
-        .catch((error) => {
-          console.log(error, "error");
-        });
-      config.url = `${process.env.REACT_APP_REFERRAL_BASE_URL}/referral/checkBalance`;
-    };
-    getReferralCode();
-  }, [customer_id]);
 
   const copyToClipBoard = (obj) => {
     obj.target.innerHTML = "Copied";
     Set_clicked(true);
     navigator.clipboard.writeText(referral_code);
   };
+
   return (
     <>
-      <div className={ `${inHistory? "referAFriendContainer-inHistory": "referAFriendContainer"}`} id="referFriend">
+      <div className={ `${inHistory? "referAFriendContainer-inHistory": "referAFriendContainer"} ${process.env.REACT_APP_BRAND == 'Saturn' ? "saturn-gradient":"mars-gradient"}`} id="referFriend">
         {(customer_id && !inHistory) ? (
           <div className="refer-code-header">{constants.BANNER_REFERRAL_CODE_INPUT_LABEL}</div>
         ) : null}
@@ -122,6 +104,7 @@ export default function ReferAFriend({ customer_id,Set_Referral_code,inHistory,c
             </div>
           </div> : null }
           <div className="refer-friend-container">
+          { (!customer_id || (window.innerWidth < 600) ) && 
             <div className={`referFriend ${customer_id ? "refer-friend-width-with-customer-id" : 
           "refer-friend-width-no-customer-id"}`} onClick={() => share()}> 
               <div className="referText">
@@ -129,6 +112,7 @@ export default function ReferAFriend({ customer_id,Set_Referral_code,inHistory,c
                 {constants.BANNER_REFER_A_FRIEND_TEXT}
                 </div>
             </div>
+          }
           </div>
         </div>
       </div>

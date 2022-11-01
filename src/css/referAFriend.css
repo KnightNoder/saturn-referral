@@ -1,10 +1,11 @@
+
 .referAFriendContainer {
   overflow: auto;
 }
 
 .refer-code-header {
   margin-left: 3%;
-  font-size: 20px;
+  font-size: 22px;
   margin-bottom: 1%;
   color: #ffffff;
 }
@@ -35,11 +36,11 @@
 .couponText {
   font-style: normal;
   font-weight: normal;
-  color: #2fa83b;
+  color: #333333;
   display: flex;
-  font-size: 15px;
+  font-size: 22px;
   align-items: center;
-  font-size: 25px;
+  font-size: 22px;
   padding: 0 0 0 5%;
   flex: 2;
   height: 40px;
@@ -54,10 +55,10 @@
   background: #edefed;
   box-sizing: border-box;
   border-radius: 5px;
-  font-size: 20px;
+  font-size: 14px;
   color: #8a8a8a;
-  height: 74%;
-  width: 82%;
+  height: 34px;
+  width: 74%;
   cursor: pointer;
   margin: 3% 0 3% 5%;
   padding: 0 0;
@@ -67,7 +68,7 @@
 }
 
 .referFriend {
-  background-color: var(--button-color);
+  background-color: var(--color-dark);
   box-sizing: border-box;
   border-radius: 5px;
   text-align: center;
@@ -84,7 +85,7 @@
 }
  
 .referFriend:hover {
-  background-color: #704353;
+  /* background-color: #704353; */
 }
 
 .sharePic{
@@ -139,6 +140,11 @@
 .dotted-box {
   border: dotted 1px;
 }
+
+.referAFriendContainer-inHistory{
+  background: none !important;
+}
+
 @media only screen and (max-width: 600px) {
   .referAFriendContainer {
     box-sizing: border-box;
@@ -146,20 +152,19 @@
   }
 
   .couponText {
-    font-size: 15px;
+    font-size: 14px;
   }
 
   .referral-code {
     flex-direction: column;
     /* background: linear-gradient(-90deg, #1469B3 -1.36%, #222E54 77.79%);  */
-    background: var(--backgroundGradient);
     margin-right: 0;
   }
 
   .refer-code-header {
-    font-size: 15px;
+    font-size: 14px;
     margin-bottom: 4%;
-    color: var(--basic)
+    color: var(--color-text)
   }
   
   .coupon {
@@ -194,14 +199,15 @@
 
   .copyCoupon {
     font-size: 14px;
-    height: 30px;
+    height: 34px;
+    width: 90%;
   }
 
   .sharePic{
     margin-right: 3%;
     width: 4%;
     margin-top: .3%;
-    height: 68%;
+    height: 47%;
   }
 
   .refer-code-header{
@@ -221,8 +227,7 @@
 
 @media only screen and (min-width: 600px) {
   .referAFriendContainer {
-    margin-top: 4%;
-    background: var(--backgroundGradient);  
+    margin-top: 2%;
   }
 
   .referAFriendContainer-inHistory {
@@ -237,11 +242,12 @@
   .referral-code-in-history {
     margin-bottom: 3%;
     height: 55px;
+    margin-left: 28%;
 }
 
   .refer-code-header {
     font-weight: bold;
-    color: #333333
+    color: var(--color-text);
   }
 
   .refer-friend-container{
@@ -256,20 +262,21 @@
   }
 
   .referText {
-    font-size: 24px;
+    font-size: 14px;
     display: flex;
     justify-content: center;
     align-items: center;
   }
   
   .referFriend {
-    margin-left: 6%;
+    margin-left: 5%;
     display: flex;
     align-items: center;
   }
 
   .refer-friend-width-no-customer-id {
-    width: 38%;
+    width: 30%;
+    height: 44px;
   }
 
   .refer-friend-width-with-customer-id {
