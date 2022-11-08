@@ -188,7 +188,7 @@ const getReferralCode = async () => {
       {showHistory && <BackNavigator hideHistory={toggleHistoryFalse} />}
       {!showHistory && <ReferAndEarn  customer_id={customer_id} showHistory={showHistory} cashName={cashName} referral_code={referral_code}/>}
       {!showHistory && <WalletCards setData={setData} scrollToVouchers={scrollToVouchers} showHistory={toggleHistoryTrue}  
-      customer_id={customer_id} user_data={user_data}cashName={cashName} customerPhoneNumber={customerPhoneNumber}/>}
+      customer_id={customer_id} user_data={user_data}cashName={cashName} customerPhoneNumber={customerPhoneNumber} referral_code={referral_code}/>}
       {!showHistory && customer_id && !user_data.lifetime && <CashInfo cashName={cashName}/>}
       {!showHistory && < PhoneNumberSection customer_id={customer_id} customerPhoneNumber={customerPhoneNumber} SetPhoneNumber={SetPhoneNumber}/> }
       {!showHistory && <HowItWorks customer_id={customer_id} user_data={user_data} cashName={cashName}/>}
