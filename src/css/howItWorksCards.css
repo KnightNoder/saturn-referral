@@ -118,6 +118,11 @@
   margin-right: .5%;
 }
 
+.reward-img-cash{
+  height: 20px;
+  width: 20px;
+}
+
 @media only screen and (max-width: 600px) {
   .how-content-div {
     flex-direction: column;

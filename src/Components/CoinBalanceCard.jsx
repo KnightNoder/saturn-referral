@@ -1,6 +1,6 @@
 import "../css/coinBalanceCard.css";
 // import coinPic from './images/onlycoin.png'
-import pic from "../images/mobile-mcash.png";
+import pic from "../images/mcash.png";
 import historyPic from "../images/history3.png";
 import React, { useState, useContext, createContext, useEffect } from "react";
 import { BottomSheet } from "react-spring-bottom-sheet";
