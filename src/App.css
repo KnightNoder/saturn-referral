@@ -45,6 +45,15 @@
   background: linear-gradient(99.82deg, #222F54 -40.4%, #1665AC 145.21%);;
 }
 
+.react-responsive-modal-modal {
+  border-radius: 16px;
+  animation-fill-mode: forwards !important;
+}
+
+.react-responsive-modal-overlay{
+  animation-fill-mode: forwards !important;
+}
+
 div:empty{
   display: block;
 }
@@ -93,15 +102,6 @@ a:not([href]) {
 
   .coinsOnWayFlex {
     margin-top: 36px;
-  }
-
-  .react-responsive-modal-modal {
-    border-radius: 16px;
-    animation-fill-mode: forwards !important;
-  }
-
-  .react-responsive-modal-overlay{
-    animation-fill-mode: forwards !important;
   }
 
   .progress-bar-saturn-step {

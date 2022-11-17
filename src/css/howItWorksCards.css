@@ -65,6 +65,8 @@
 
 .how-content {
   margin: 0 0%;
+  flex: 1;
+
 }
 
 .how-login {
