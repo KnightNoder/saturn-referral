@@ -104,7 +104,7 @@ const History = ({user_data, customer_id,focus_ref,referral_code,cashName}) => {
                 </div>
                 </div>  
                 <div className="no-earnings-header">
-                    To earn more {cashName},refer your friends by sharing your code
+                    To earn more {cashName}, refer your friends by sharing your code
                 </div>
                 <ReferAFriend customer_id={customer_id} inHistory={true} referral_code={referral_code}/>
             </div>
@@ -127,7 +127,7 @@ const History = ({user_data, customer_id,focus_ref,referral_code,cashName}) => {
                 </div>
                 </div>  
                 <div className="no-earnings-header">
-                    To earn more {cashName},refer your friends by sharing your code
+                    To earn more {cashName}, refer your friends by sharing your code
                 </div>
                 <ReferAFriend customer_id={customer_id} inHistory={true} referral_code={referral_code}/>
               </div>

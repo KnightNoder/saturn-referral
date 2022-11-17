@@ -214,9 +214,6 @@
 }
 
 @media only screen and (max-width: 900px){
-    .phone-number-popup-div{
-    }
-
     .phone-number-popup-heading{
         font-size: 17px;
         margin-left: 6%;
@@ -253,5 +250,35 @@
     .custom-modal-phone-number {
         width: 26%;
         padding: 2% 3%;
+    }
+}
+
+@media only screen and (max-width: 900px) and (min-width: 600px) {
+    .phone-number-section .sub-heading{
+        font-size: 14px;
+        width: 87%;
+    }
+
+    .phone-number-section .input-section{
+        width: 54%;
+    }
+
+    .phone-number-text, .change-phone-link, .phone-number{
+        font-size: 14px;
+    }
+
+    .phone-success-img{
+        height: 83px;
+        width: 94px;
+    }
+
+    .custom-modal-success-phone-number{
+        height: 17%;
+        width: 30%;
+    }
+
+    .custom-modal-phone-number {
+        height: 17% !important;
+        width: 62% !important;
     }
 }

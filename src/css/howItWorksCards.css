@@ -246,4 +246,25 @@
   .how-it-works-container {
   }
 
+  .img-content{
+    font-size: 14px;
+  }
+
+  .img-sub-content{
+    font-size: 12px;
+    width: 85%;
+  }
+
+  .reward-img{
+    margin-bottom: 0%;
+  }
+
+  .how-login-text{
+    font-size: 14px;
+  }
+
+  .mcash-content{
+    font-size:14px ;
+  }
+
 }

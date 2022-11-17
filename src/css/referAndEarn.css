@@ -156,12 +156,25 @@
 @media only screen and (min-width: 600px) and (max-width: 900px) {
   .bottom-div-heading {
     font-size: 14px;
+    max-width: 80%;
   }
 
   .coupon-image {
     height: 80%;
-    margin-left: 37%;
-    margin-top: 11%;
-    width: 80%;
+    margin-left: 51%;
+    margin-top: 7%;
+    width: 65%;
+  }
+
+  .top-heading {
+    font-size: 30px;
+  }
+
+  .bottom-div-content{
+    font-size: 14px;
+  }
+
+  .content{
+    margin-left: 5%;
   }
 }

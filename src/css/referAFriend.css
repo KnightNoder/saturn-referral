@@ -306,7 +306,7 @@
   }
   
   .couponText {
-    font-size: 18px;
+    font-size: 14px;
   }
 
   .copyCoupon {
@@ -326,4 +326,26 @@
     margin-right: 6%;
   }
 
+  .refer-code-header{
+    margin-left: 5%;
+    font-size: 14px;
+  }
+
+  .coupon {
+    margin-left: 5%;
+  }
+
+  .copy-pic-referral{
+    width: 16%;
+  }
+
+  .referral-code-in-history{
+    margin: 0 -8%;
+    margin-left: 18%;
+  }
+
+  .custom-modal {
+    height: 18% !important;
+    width: 44% !important;
+  }
 }

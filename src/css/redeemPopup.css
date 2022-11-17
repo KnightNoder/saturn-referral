@@ -182,7 +182,7 @@
 }
 
 .css-1hxt08m-MuiLinearProgress-root {
-  background: #D1D1D170 !important;
+  background: var(--color-progress) !important;
   border-radius: 30px;
   height: 4px !important;
 }
@@ -249,6 +249,10 @@
   .modalContainer{
     height: 440px;
   }
+
+  .redeem-cash-pic{
+    height: 20px;
+  }
 }
 
 @media only screen and (min-width: 600px) and (max-width: 900px) {
@@ -257,8 +261,8 @@
   }
 
   .react-responsive-modal-modal {
-    height: 19%;
-    width: 42%;
+    height: 37%;
+    width: 62%;
     border-radius: 16px;
   }
 
@@ -270,7 +274,14 @@
   }
 
   .modalContainer{
-    height: 500px;
+  }
+
+  .redeem-cash-pic{
+    height: 20px;
+  }
+
+  .css-1hxt08m-MuiLinearProgress-root{
+    background: var(--color-progress) !important;
   }
 }
 

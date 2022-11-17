@@ -105,7 +105,7 @@ export default function CoinBalanceCard({ showHistory, user_data, customer_id,sc
       <div className="button-container">
         <button
           id="redeemBtn"
-          onClick={!(user_data.balance < 500 ) ? (window.innerWidth > 900 ? openDesktopModal : openMobileModal ) : openNoMcashPopUp}
+          onClick={!(user_data.balance < 500 ) ? (window.innerWidth > 600 ? openDesktopModal : openMobileModal ) : openNoMcashPopUp}
           className="redeem"
           type="button"
         >

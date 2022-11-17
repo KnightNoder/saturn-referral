@@ -85,7 +85,7 @@ const PhoneNumberSection = ({customer_id,customerPhoneNumber,SetPhoneNumber}) =>
   }
   
   const changeNumber = () => {
-    window.innerWidth > 900 ? Set_modalOpen(true) : Set_mobileModal(true);
+    window.innerWidth > 600 ? Set_modalOpen(true) : Set_mobileModal(true);
   }
   
   const phone_number_check = () => {
@@ -136,7 +136,7 @@ const PhoneNumberSection = ({customer_id,customerPhoneNumber,SetPhoneNumber}) =>
           Almost there!
       </div>
       <div className='sub-heading'>
-        To continue using your account and for all future updates, please link your phone number.All notifications will be sent via
+        To continue using your account and for all future updates, please link your phone number. All notifications will be sent via
         <span className='whatsapp-image-span'> <img src={whatsappPic} className="whatsapp-img" alt="" srcset="" /></span> Whatsapp/SMS.
       </div>
       <div className='input-section'>

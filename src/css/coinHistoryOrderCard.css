@@ -294,7 +294,6 @@
 
     .coupon-description {
         font-size: 14px;
-        margin-left: 5%;
         margin-top: 2%;
     }
 
@@ -308,5 +307,23 @@
 
     .orderCardContainer{
         margin: 3% 8%;
+    }
+
+    .historyContent{
+        font-size: 14px;
+    }
+
+    .coin-pic{
+        font-size: 14px;
+        width: 73px;
+    }
+
+    .fire{
+        width: 20px;
+        height: 20px;
+    }
+
+    .historyInfo{
+        margin-top: 2%;
     }
 }

@@ -46,4 +46,8 @@
   .walletCardsContainer {
     height: 210px;
   }
+
+  .coinBalanceCardContainer{
+    flex: 1.2
+  }
 }
