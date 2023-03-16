@@ -15,7 +15,7 @@
     exports.BANNER_HEADER = 'Wellness is rewarding.';
     exports.BANNER_SUB_HEADING= '#GiftWellness';
     exports.BANNER_TOP_CONTENT='For every Friend you refer,you get 100 sCash credits for their future purchases.';
-    exports.BANNER_BOTTOM_CONTENT='Redeem credits for Amazon Gift Vouchers.';
+    exports.BANNER_BOTTOM_CONTENT='You can redeem those credits for Amazon Gift Vouchers.';
     exports.BANNER_REFERRAL_CODE_INPUT_LABEL='My Referral Code';
     exports.BANNER_COPY_CODE_TEXT='Copy Code';
     exports.BANNER_REFER_A_FRIEND_TEXT='Refer A Friend';
