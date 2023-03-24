@@ -37,8 +37,8 @@ const HowItWorks = ({customer_id,user_data,cashName}) => {
           Refer and Earn
         </div>
         <div className="mobile-how-it-works-sub-heading">
-          For every Friend you refer, you get 100 {cashName} credits for their future purchases.
-          Redeem credits for Amazon gift vouchers.
+          For every friend you refer, you get 100 {cashName} credits after they make a purchase using your referral code.
+          You can redeem those credits for Amazon Gift Vouchers.
         </div>
         <div className="how-heading">How it works</div>
         {/* <ProgressBarComp

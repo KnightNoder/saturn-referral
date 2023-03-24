@@ -106,7 +106,7 @@ const getReferralCode = async () => {
     };
     const rewards_earned = response.data.body.ledger.filter((x) => x.status == 'rewarded');
     const amazon_vouchers_array=response.data.body.ledger.filter((x) => x.voucher_code != "0");
-    amazon_vouchers_array.forEach((x) => amazon_vouchers_total_sum += x.value);
+    amazon_vouchers_array.forEach((x) => amazon_vouchers_total_sum += parseInt(x.voucher_value));
     const pending_amazon_vouchers = response.data.body.ledger.filter((x) => {return (x.type == 'debit' && x.status == "pending")});
     Set_user_data({
           "balance": response.data.body.balance,
