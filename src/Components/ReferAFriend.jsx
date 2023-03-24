@@ -45,7 +45,7 @@ export default function ReferAFriend({ customer_id,inHistory,cashName,referral_c
       if(process.env.REACT_APP_BRAND == 'Saturn') {
         link = `https://www.saturn.health/pages/referral`
       } else {
-        link = `https://ghc.health/products/copy-of-biotin-gummies-for-hair-with-zinc-1`
+        link = `https://ghc.mobi/5NR06I`
       }
       const image_blob = await image.blob();
       const file = new File([image_blob],'Whatsapp_referral_image.jpg',{type:"image/jpeg"})
