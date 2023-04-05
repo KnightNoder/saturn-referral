@@ -45,7 +45,7 @@ export default function ReferAFriend({ customer_id,inHistory,cashName,referral_c
       if(process.env.REACT_APP_BRAND == 'Saturn') {
         link = `https://www.saturn.health/pages/referral`
       } else {
-        link = `https://ghc.mobi/5NR06I`
+        link = `https://www.ghc.health/pages/referral`
       }
       const image_blob = await image.blob();
       const file = new File([image_blob],'Whatsapp_referral_image.jpg',{type:"image/jpeg"})
@@ -53,7 +53,9 @@ export default function ReferAFriend({ customer_id,inHistory,cashName,referral_c
       .share({
         files:[file],
         title: "Referral",
-        text: `Boost Hair growth with Biotin Gummies. Use my referral code ${referral_code.toUpperCase()} to grab it for a reduced price of just 319/-
+        text: `Hey,buddy!\nHere is my ${process.env.REACT_APP_BRAND} by ghc referral code - ${referral_code.toUpperCase()}.
+        \nYou get 20% off and free delivery on your next order.
+        \nLet's celebrate Good health and Wellness
         \n${link} `
       })
       .then(() => {
