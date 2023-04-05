@@ -43,9 +43,9 @@ export default function ReferAFriend({ customer_id,inHistory,cashName,referral_c
       }
 
       if(process.env.REACT_APP_BRAND == 'Saturn') {
-        link = `https://www.saturn.health/pages/referral`
+        link = `https://www.saturn.health`
       } else {
-        link = `https://www.ghc.health/pages/referral`
+        link = `https://www.ghc.health`
       }
       const image_blob = await image.blob();
       const file = new File([image_blob],'Whatsapp_referral_image.jpg',{type:"image/jpeg"})
